@@ -4,6 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslintConfigPrettier from 'eslint-config-prettier'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -20,4 +22,8 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // 将 Prettier 作为 ESLint 规则运行, 并将差异报告为单个 ESLint 问题
+  eslintPluginPrettierRecommended,
+  // 关闭 ESLint 中所有不必要或可能与 Prettier 冲突的规则
+  eslintConfigPrettier,
 ])
