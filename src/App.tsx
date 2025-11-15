@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { RouterProvider } from 'react-router-dom'
+import { AppProvider } from './contexts/AppContext'
+import { router } from './router'
+import Loading, { type LoadingRef } from './components/loading'
+import { loadingManager } from './components/loading/manager'
+import { useRef, useEffect } from 'react'
+import './global'
 
-function App() {
-  const [count, setCount] = useState(0)
+/**
+ * Loading 容器组件
+ * 注册 loading 引用到全局管理器，并处理初始页面加载
+ */
+const LoadingContainer = () => {
+  const loadingRef = useRef<LoadingRef>(null) // loading 引用
+  const isInitialMountRef = useRef(true) // 是否是初始加载
 
+  useEffect(() => {
+    // 注册 loading 引用到全局管理器
+    loadingManager.setRef(loadingRef.current)
+
+    // 初始加载时检查页面状态
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false
+      loadingManager.checkAndHide()
+    }
+
+    return () => {
+      loadingManager.setRef(null)
+    }
+  }, [])
+
+  return <Loading ref={loadingRef} />
+}
+
+/**
+ * 应用根组件
+ * @returns 应用根组件
+ */
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <AppProvider>
+      <LoadingContainer />
+      <RouterProvider router={router} />
+    </AppProvider>
   )
 }
 

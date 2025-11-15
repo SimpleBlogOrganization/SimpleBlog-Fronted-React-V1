@@ -1,0 +1,125 @@
+@use 'sass:map';
+
+// ==================== 全局样式 ====================
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  margin: 0;
+  padding: 0;
+}
+
+html[data-mode='dark'] {
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+html[data-mode='light'] {
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+// ==================== 主题配置 ====================
+
+// RGB 遮罩函数：通过系数调整颜色亮度
+@function apply-rgb-mask($color, $intensity) {
+  @return rgb(
+    red($color) * $intensity,
+    green($color) * $intensity,
+    blue($color) * $intensity
+  );
+}
+
+// 基础颜色配置（高级简约黑白灰配色）
+$color-config: (
+  primary-color: #2c2c2c,
+  bg-primary: #ffffff,
+  bg-secondary: #f8f8f8,
+  border-color: #e5e5e5,
+);
+
+// 浅色模式
+:root,
+html[data-mode='light'],
+html:not([data-mode]) {
+  --text-primary: rgba(0, 0, 0, 0.88);
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --text-disabled: rgba(0, 0, 0, 0.25);
+  --primary-color: #{map.get($color-config, primary-color)};
+  --primary-hover: #1a1a1a;
+  --bg-primary: #{map.get($color-config, bg-primary)};
+  --bg-secondary: #{map.get($color-config, bg-secondary)};
+  --border-color: #{map.get($color-config, border-color)};
+  --scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+// 深色模式
+html[data-mode='dark'] {
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.68);
+  --text-disabled: rgba(255, 255, 255, 0.28);
+  --primary-color: #a0a0a0;
+  --primary-hover: #b8b8b8;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --border-color: #2a2a2a;
+  --scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+// ==================== 全局基础样式 ====================
+html {
+  font-family:
+    'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
+    'Helvetica Neue', 'Arial', 'sans-serif'; /* 系统默认字体 */
+  -webkit-font-smoothing: antialiased; /* 优化 Safari 系统上的字体渲染 */
+  -moz-osx-font-smoothing: grayscale; /* 优化 macOS 系统上的字体渲染 */
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--primary-hover);
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-primary);
+}
