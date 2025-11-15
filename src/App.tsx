@@ -11,14 +11,12 @@ import './global'
  * 注册 loading 引用到全局管理器，并处理初始页面加载
  */
 const LoadingContainer = () => {
-  const loadingRef = useRef<LoadingRef>(null) // loading 引用
-  const isInitialMountRef = useRef(true) // 是否是初始加载
+  const loadingRef = useRef<LoadingRef>(null)
+  const isInitialMountRef = useRef(true)
 
   useEffect(() => {
-    // 注册 loading 引用到全局管理器
     loadingManager.setRef(loadingRef.current)
 
-    // 初始加载时检查页面状态
     if (isInitialMountRef.current) {
       isInitialMountRef.current = false
       loadingManager.checkAndHide()
@@ -34,7 +32,6 @@ const LoadingContainer = () => {
 
 /**
  * 应用根组件
- * @returns 应用根组件
  */
 const App = () => {
   return (

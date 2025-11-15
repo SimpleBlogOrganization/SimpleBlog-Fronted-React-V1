@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 
 /**
  * 404 页面组件
- * @returns 页面未找到组件
  */
 const NotFound = () => {
   return (

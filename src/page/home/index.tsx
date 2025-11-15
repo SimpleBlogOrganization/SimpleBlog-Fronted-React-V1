@@ -3,18 +3,13 @@ import { useApp } from '@/contexts/AppContext'
 
 /**
  * 用户中心页面组件
- * @returns 用户信息展示组件
  */
 const Home = () => {
   const { user, logout } = useApp()
   const navigate = useNavigate()
 
-  /**
-   * 处理退出登录
-   */
   const handleLogout = () => {
     logout()
-    // 使用 replace: true 避免在历史栈中留下 /home，防止用户通过浏览器回退回到已退出登录的页面
     navigate('/login', { replace: true })
   }
 

@@ -1,11 +1,11 @@
-// 引入相应的文件
 import React from 'react'
-// 引入路由
 import * as Router from 'react-router-dom'
-// 引入Request
 import Request from '@/services/request'
 
-// 在React命名空间定义相应属性
+/**
+ * 全局扩展：在 React 命名空间上挂载路由和请求工具
+ * 方便在组件中通过 React.Router 和 React.Http 访问
+ */
 React.Router = Router
 React.Http = Request
 

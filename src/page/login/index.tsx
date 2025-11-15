@@ -4,7 +4,6 @@ import { useApp } from '@/contexts/AppContext'
 
 /**
  * 登录页面组件
- * @returns 登录表单组件
  */
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -14,10 +13,6 @@ const Login = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
-  /**
-   * 处理登录表单提交
-   * @param e - 表单提交事件
-   */
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -35,7 +30,6 @@ const Login = () => {
       setState('token', token)
       setLoading(false)
 
-      // 从 query 参数获取重定向路径
       const redirectTo = searchParams.get('redirect') || '/home'
       navigate(redirectTo, { replace: true })
     }, 500)

@@ -3,7 +3,6 @@ import { useApp } from '@/contexts/AppContext'
 
 /**
  * 首页组件
- * @returns 博客首页组件
  */
 const Index = () => {
   const { user, mode, setMode } = useApp()

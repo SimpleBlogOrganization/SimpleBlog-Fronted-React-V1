@@ -6,11 +6,11 @@ import type { StateConfig } from '@/types/AppContext'
  */
 export const DEFAULT_CONFIG: Record<string, StateConfig> = {
   user: {
-    persist: true, // 是否持久化
-    storageKey: 'app_user', // 存储键名
+    persist: true,
+    storageKey: 'app_user',
     transform: {
-      save: (value) => JSON.stringify(value), // 保存时的转换函数
-      load: (value) => JSON.parse(value), // 加载时的转换函数
+      save: (value) => JSON.stringify(value),
+      load: (value) => JSON.parse(value),
     },
   },
   mode: {

@@ -7,10 +7,6 @@ import type { LoadingRef } from './index'
 class LoadingManager {
   private loadingRef: LoadingRef | null = null
 
-  /**
-   * 设置 loading 引用
-   * @param ref - Loading 组件引用
-   */
   setRef(ref: LoadingRef | null) {
     this.loadingRef = ref
   }
@@ -18,7 +14,6 @@ class LoadingManager {
   /**
    * 显示 loading 并等待进入 active 状态
    * @param next - 在 active 状态时执行的回调
-   * @returns Promise，在 active 状态时 resolve
    */
   async show(next?: () => void): Promise<void> {
     if (!this.loadingRef) {
@@ -44,9 +39,6 @@ class LoadingManager {
     })
   }
 
-  /**
-   * 隐藏 loading
-   */
   hide() {
     this.loadingRef?.out()
   }

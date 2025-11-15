@@ -11,14 +11,6 @@ const Login = lazy(() => import('@/page/login'))
 /**
  * 路由配置
  * 定义应用的所有路由及其元数据
- * @example
- * ```typescript
- * {
- *   path: 'dashboard',
- *   element: <Dashboard />,
- *   meta: { title: '仪表盘' }
- * }
- * ```
  */
 export const routes: EnhancedRoute[] = [
   {
