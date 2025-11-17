@@ -1,4 +1,4 @@
-import type { LoadingRef } from './index'
+import type { LoadingRef } from './type'
 
 /**
  * 全局 Loading 管理器
@@ -22,20 +22,12 @@ class LoadingManager {
     }
 
     return new Promise((resolve) => {
-      let resolved = false
       const doResolve = () => {
-        if (!resolved) {
-          resolved = true
-          next?.()
-          resolve()
-        }
+        next?.()
+        resolve()
       }
 
-      this.loadingRef?.in(doResolve, (state) => {
-        if (state === 'active') {
-          doResolve()
-        }
-      })
+      this.loadingRef?.in(doResolve)
     })
   }
 
