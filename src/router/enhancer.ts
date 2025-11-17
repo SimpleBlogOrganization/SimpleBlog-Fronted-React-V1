@@ -11,7 +11,7 @@ import {
   type RouteObject,
   type Location,
 } from 'react-router-dom'
-// import { loadingManager } from '@/components/Loading/manager'
+import { loadingManager } from '@/components/Loading/manager'
 
 /**
  * 路由增强器
@@ -75,17 +75,17 @@ export const createEnhancedRouter = (
             }
           }
 
-          // await loadingManager.show()
+          await loadingManager.show()
 
           previousLocation = context.to
           const loaderResult = await (route.loader as LoaderFunction)?.(args)
 
-          // loadingManager.checkAndHide()
+          loadingManager.checkAndHide()
 
           return loaderResult
         } catch (error) {
           console.error('Route Loader Error:', error)
-          // loadingManager.hide()
+          loadingManager.hide()
           return redirect('/404')
         }
       }
