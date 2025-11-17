@@ -1,8 +1,8 @@
 import { RouterProvider } from 'react-router-dom'
 import { AppProvider } from './contexts/AppContext'
 import { router } from './router'
-import Loading, { type LoadingRef } from './components/loading'
-import { loadingManager } from './components/loading/manager'
+import Loading, { type LoadingRef } from './components/Loading'
+import { loadingManager } from './components/Loading/manager'
 import { useRef, useEffect } from 'react'
 import './global'
 

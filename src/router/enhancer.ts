@@ -11,7 +11,7 @@ import {
   type RouteObject,
   type Location,
 } from 'react-router-dom'
-import { loadingManager } from '@/components/loading/manager'
+import { loadingManager } from '@/components/Loading/manager'
 
 /**
  * 路由增强器
@@ -35,7 +35,8 @@ export const createEnhancedRouter = (
     parentMeta: RouteMeta = {}
   ): RouteObject[] => {
     const items = routes.map((route) => {
-      const currentMeta = mergeRouteMeta(parentMeta, route.meta)
+      // 合并路由元数据
+      const currentMeta = { ...parentMeta, ...route.meta }
 
       const enhancedLoader: RouteObject['loader'] = async (args) => {
         const targetUrl = new URL(args.request.url)
@@ -59,21 +60,22 @@ export const createEnhancedRouter = (
           redirect: route.redirect,
         }
 
+        // 如果存在重定向，并且重定向地址不等于当前地址，导到重定向地址
         if (route.redirect && route.redirect !== targetUrl.pathname) {
           return redirect(route.redirect)
         }
 
         try {
-          await loadingManager.show()
-
+          // 先执行守卫检查，如果会重定向则不显示 Loading
           if (guard?.beforeEach) {
             const result = await guard.beforeEach(context)
 
             if (result instanceof Response) {
-              loadingManager.hide()
               return result
             }
           }
+
+          await loadingManager.show()
 
           previousLocation = context.to
           const loaderResult = await (route.loader as LoaderFunction)?.(args)
@@ -104,14 +106,4 @@ export const createEnhancedRouter = (
   }
 
   return createBrowserRouter(enhanceRoutes(routes))
-}
-
-/**
- * 合并路由元数据
- */
-const mergeRouteMeta = (parent: RouteMeta = {}, child: RouteMeta = {}) => {
-  return {
-    ...parent,
-    ...child,
-  }
 }

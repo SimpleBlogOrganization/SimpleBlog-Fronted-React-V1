@@ -6,7 +6,7 @@
 
 ```
 router/
-├── config.ts      # 配置常量（公开路由配置）
+├── config.ts      # 配置常量（需要登录的路由配置）
 ├── routes.tsx     # 路由配置（纯配置，路由定义）
 ├── guard.ts       # 权限守卫（认证、权限控制）
 ├── enhancer.ts    # 路由增强器（注入 loader、Loading 动画）
@@ -44,7 +44,7 @@ router/
 
 - **路由守卫**：在路由加载前执行认证检查，避免页面闪烁
 - **Loading 动画**：路由切换时自动显示/隐藏 Loading
-- **自动认证**：基于 `PUBLIC_ROUTES` 配置自动判断是否需要登录
+- **自动认证**：基于 `AUTH_ROUTES` 配置自动判断是否需要登录
 - **页面标题**：自动设置页面标题（通过 `meta.title`）
 - **重定向处理**：未登录自动重定向到登录页，并保存来源路径
 
@@ -64,15 +64,15 @@ router/
 }
 ```
 
-### 配置公开路由
+### 配置需要登录的路由
 
-在 `config.ts` 中修改 `PUBLIC_ROUTES`：
+在 `config/router.ts` 中修改 `AUTH_ROUTES`：
 
 ```typescript
-export const PUBLIC_ROUTES = ['/', '/login', '/about'] as const
+export const AUTH_ROUTES = ['/home', '/dashboard'] as const
 ```
 
-**注意**：不在 `PUBLIC_ROUTES` 中的路由会自动要求登录。
+**注意**：只有 `AUTH_ROUTES` 中配置的路由才需要登录，其他路由默认公开访问。
 
 ### 自定义守卫
 
@@ -117,7 +117,7 @@ enhancer.ts: 拦截路由加载
 
 ## 关键文件说明
 
-- **config.ts**：公开路由配置和工具函数
+- **config/router.ts**：需要登录的路由配置
 - **routes.tsx**：路由定义和元数据
 - **guard.ts**：守卫工厂函数和认证逻辑（纯权限控制）
 - **enhancer.ts**：路由增强和动画控制逻辑

@@ -1,6 +1,6 @@
 import type { RouterGuard } from '@/types/router'
 import { redirect } from 'react-router-dom'
-import { PUBLIC_ROUTES } from '@/config/router'
+import { AUTH_ROUTES } from '@/config/router'
 import { getUser } from '@/contexts/AppContext'
 
 /**
@@ -10,12 +10,12 @@ import { getUser } from '@/contexts/AppContext'
 export const createAuthGuard = (): RouterGuard => {
   return {
     beforeEach: async ({ to, meta }) => {
-      const isPublic = (PUBLIC_ROUTES as readonly string[]).includes(
+      const requiresAuth = (AUTH_ROUTES as readonly string[]).includes(
         to.pathname
       )
       const user = getUser()
 
-      if (!isPublic && !user) {
+      if (requiresAuth && !user) {
         return redirect(
           `/login?redirect=${encodeURIComponent(to.pathname + to.search)}`
         )

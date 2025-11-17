@@ -1,5 +1,5 @@
 /**
- * 公开路由配置
- * 定义不需要登录即可访问的路由路径
+ * 需要登录的路由配置
+ * 定义需要登录才能访问的路由路径
  */
-export const PUBLIC_ROUTES = ['/', '/login'] as const
+export const AUTH_ROUTES = ['/home'] as const
