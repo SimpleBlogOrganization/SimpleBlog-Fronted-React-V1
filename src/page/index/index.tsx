@@ -1,79 +1,59 @@
-import { Link } from 'react-router-dom'
+import { useRef } from 'react'
 import { useApp } from '@/contexts/AppContext'
+
+import FluidReveal, { type FluidRevealRef } from '@/components/FluidReveal'
+import './index.scss'
+import useIndexData from '@/hooks/useIndexData'
 
 /**
  * 首页组件
  */
 const Index = () => {
-  const { user, mode, setMode } = useApp()
+  const { setMode } = useApp()
+  const { topImage, bottomImage } = useIndexData()
+  const fluidRevealRef = useRef<FluidRevealRef>(null)
+
+  const handleReverse = () => {
+    fluidRevealRef.current?.reverse()
+  }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1>博客首页</h1>
-
-      <div style={{ marginTop: '2rem' }}>
-        <nav style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          {user ? (
-            <Link
-              to="/home"
-              style={{
-                padding: '0.5rem 1rem',
-                background: 'var(--primary-color)',
-                color: '#fff',
-                borderRadius: '8px',
-                textDecoration: 'none',
-              }}
-            >
-              {user.username || user.name || '用户中心'}
-            </Link>
-          ) : (
-            <Link
-              to="/login"
-              style={{
-                padding: '0.5rem 1rem',
-                background: 'var(--primary-color)',
-                color: '#fff',
-                borderRadius: '8px',
-                textDecoration: 'none',
-              }}
-            >
-              登录
-            </Link>
-          )}
-        </nav>
+    <>
+      {/* 装饰层 - FluidReveal */}
+      <div className="index-page__decoration">
+        <div className="fluid-reveal-container">
+          <div className="round-one"></div>
+          <div className="round-two"></div>
+          <FluidReveal
+            ref={fluidRevealRef}
+            topImage={topImage}
+            bottomImage={bottomImage}
+          />
+        </div>
       </div>
-
-      <div style={{ marginTop: '3rem' }}>
-        <h2>模式切换</h2>
-        <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+      {/* 内容层 - 主题切换 */}
+      <div className="index-page__content">
+        <div className="index-page__theme-switcher">
           {[
             { value: 'light', label: '🌞 浅色' },
             { value: 'dark', label: '🌙 深色' },
           ].map((item) => (
             <button
               key={item.value}
-              onClick={() => setMode(item.value as 'light' | 'dark')}
-              style={{
-                padding: '0.5rem 1rem',
-                background:
-                  mode === item.value ? 'var(--primary-color)' : 'transparent',
-                color: mode === item.value ? '#fff' : 'var(--text-primary)',
-                border: `2px solid ${
-                  mode === item.value
-                    ? 'var(--primary-color)'
-                    : 'var(--border-color)'
-                }`,
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
+              className="index-page__button"
+              onClick={() => {
+                setMode(item.value as 'light' | 'dark')
               }}
             >
               {item.label}
             </button>
           ))}
+          <button className="index-page__button" onClick={handleReverse}>
+            🔄 切换图片
+          </button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
