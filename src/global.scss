@@ -1,5 +1,3 @@
-@use 'sass:map';
-
 // ==================== 全局样式 ====================
 
 * {
@@ -9,109 +7,275 @@
   padding: 0;
 }
 
-html[data-mode='dark'] {
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-}
+// ==================== Material Design 3 主题变量 ====================
 
-html[data-mode='light'] {
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
-}
+// Material Design 3 颜色系统
+// 基于 Material Design 3 (Material You) 规范
 
-// ==================== 主题配置 ====================
-
-// RGB 遮罩函数：通过系数调整颜色亮度
-@function apply-rgb-mask($color, $intensity) {
-  @return rgb(
-    red($color) * $intensity,
-    green($color) * $intensity,
-    blue($color) * $intensity
-  );
-}
-
-// 基础颜色配置（高级简约黑白灰配色）
-$color-config: (
-  primary-color: #2c2c2c,
-  bg-primary: #ffffff,
-  bg-secondary: #f8f8f8,
-  border-color: #e5e5e5,
-);
-
-// 浅色模式
+// 浅色模式 - Light Color Scheme
 :root,
 html[data-mode='light'],
 html:not([data-mode]) {
-  --text-primary: rgba(0, 0, 0, 0.88);
-  --text-secondary: rgba(0, 0, 0, 0.65);
-  --text-disabled: rgba(0, 0, 0, 0.25);
-  --primary-color: #{map.get($color-config, primary-color)};
-  --primary-hover: #1a1a1a;
-  --bg-primary: #{map.get($color-config, bg-primary)};
-  --bg-secondary: #{map.get($color-config, bg-secondary)};
-  --border-color: #{map.get($color-config, border-color)};
-  --scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  // ========== Primary 主色系统 ==========
+  --md-primary: #6750a4; // Material Design 3 标准主色
+  --md-primary-container: #eaddff;
+  --md-on-primary: #ffffff;
+  --md-on-primary-container: #21005d;
+
+  // ========== Secondary 次色系统 ==========
+  --md-secondary: #625b71;
+  --md-secondary-container: #e8def8;
+  --md-on-secondary: #ffffff;
+  --md-on-secondary-container: #1d192b;
+
+  // ========== Tertiary 第三色系统 ==========
+  --md-tertiary: #7d5260;
+  --md-tertiary-container: #ffd8e4;
+  --md-on-tertiary: #ffffff;
+  --md-on-tertiary-container: #31111d;
+
+  // ========== Error 错误色系统 ==========
+  --md-error: #ba1a1a;
+  --md-error-container: #ffdad6;
+  --md-on-error: #ffffff;
+  --md-on-error-container: #410002;
+
+  // ========== Neutral 中性色系统 ==========
+  --md-surface: #f4f2ec;
+  --md-surface-dim: #d4d2cc;
+  --md-surface-bright: #f9f7f1;
+  --md-surface-container-lowest: #faf8f2;
+  --md-surface-container-low: #efede7;
+  --md-surface-container: #eae8e2;
+  --md-surface-container-high: #e5e3dd;
+  --md-surface-container-highest: #e0ded8;
+  --md-on-surface: #1c1b1f;
+  --md-on-surface-variant: #49454f;
+  --md-outline: #79747e;
+  --md-outline-variant: #c8c6c0;
+
+  // ========== Background 背景系统 ==========
+  --md-background: #f4f2ec;
+  --md-on-background: #1c1b1f;
+
+  // ========== Inverse 反转色系统 ==========
+  --md-inverse-surface: #313033;
+  --md-inverse-on-surface: #f4eff4;
+  --md-inverse-primary: #d0bcff;
+
+  // ========== State Layers 状态层级 ==========
+  --md-state-hover: rgba(28, 27, 31, 0.08);
+  --md-state-focus: rgba(28, 27, 31, 0.12);
+  --md-state-pressed: rgba(28, 27, 31, 0.16);
+  --md-state-dragged: rgba(28, 27, 31, 0.16);
+  --md-state-disabled: rgba(28, 27, 31, 0.38);
 }
 
-// 深色模式
+// 深色模式 - Dark Color Scheme
 html[data-mode='dark'] {
-  --text-primary: rgba(255, 255, 255, 0.92);
-  --text-secondary: rgba(255, 255, 255, 0.68);
-  --text-disabled: rgba(255, 255, 255, 0.28);
-  --primary-color: #a0a0a0;
-  --primary-hover: #b8b8b8;
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --border-color: #2a2a2a;
-  --scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  // ========== Primary 主色系统 ==========
+  --md-primary: #d0bcff;
+  --md-primary-container: #4f378b;
+  --md-on-primary: #381e72;
+  --md-on-primary-container: #eaddff;
+
+  // ========== Secondary 次色系统 ==========
+  --md-secondary: #ccc2dc;
+  --md-secondary-container: #4a4458;
+  --md-on-secondary: #332d41;
+  --md-on-secondary-container: #e8def8;
+
+  // ========== Tertiary 第三色系统 ==========
+  --md-tertiary: #efb8c8;
+  --md-tertiary-container: #633b48;
+  --md-on-tertiary: #492532;
+  --md-on-tertiary-container: #ffd8e4;
+
+  // ========== Error 错误色系统 ==========
+  --md-error: #ffb4ab;
+  --md-error-container: #93000a;
+  --md-on-error: #690005;
+  --md-on-error-container: #ffdad6;
+
+  // ========== Neutral 中性色系统 ==========
+  --md-surface: #11161a;
+  --md-surface-dim: #0d1114;
+  --md-surface-bright: #1a1f24;
+  --md-surface-container-lowest: #0a0d10;
+  --md-surface-container-low: #151a1e;
+  --md-surface-container: #1a1f24;
+  --md-surface-container-high: #1f2529;
+  --md-surface-container-highest: #242a2e;
+  --md-on-surface: #e6e8ea;
+  --md-on-surface-variant: #c4c8cc;
+  --md-outline: #8e9398;
+  --md-outline-variant: #3d4246;
+
+  // ========== Background 背景系统 ==========
+  --md-background: #11161a;
+  --md-on-background: #e6e8ea;
+
+  // ========== Inverse 反转色系统 ==========
+  --md-inverse-surface: #e6e8ea;
+  --md-inverse-on-surface: #2a2e32;
+  --md-inverse-primary: #6750a4;
+
+  // ========== State Layers 状态层级 ==========
+  --md-state-hover: rgba(230, 232, 234, 0.08);
+  --md-state-focus: rgba(230, 232, 234, 0.12);
+  --md-state-pressed: rgba(230, 232, 234, 0.16);
+  --md-state-dragged: rgba(230, 232, 234, 0.16);
+  --md-state-disabled: rgba(230, 232, 234, 0.38);
+}
+
+// ========== Material Design 3 Elevation 高程系统 ==========
+// 高程系统用于创建阴影效果，是颜色系统的一部分
+
+:root {
+  --md-elevation-0: none;
+  --md-elevation-1:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-elevation-2:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-elevation-3:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-elevation-4:
+    0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-elevation-5:
+    0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+}
+
+html[data-mode='dark'] {
+  --md-elevation-1:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-elevation-2:
+    0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-elevation-3:
+    0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+  --md-elevation-4:
+    0px 6px 5px 0px rgba(0, 0, 0, 0.3), 0px 11px 15px 7px rgba(0, 0, 0, 0.15);
+  --md-elevation-5:
+    0px 8px 5px 0px rgba(0, 0, 0, 0.3), 0px 15px 22px 8px rgba(0, 0, 0, 0.15);
 }
 
 // ==================== 全局基础样式 ====================
+
+// 滚动条样式
+html[data-mode='dark'] {
+  scrollbar-color: rgba(230, 232, 234, 0.35) transparent;
+}
+
+html[data-mode='light'],
+html:not([data-mode]) {
+  scrollbar-color: rgba(28, 27, 31, 0.35) transparent;
+}
+
 html {
   font-family:
     'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
-    'Helvetica Neue', 'Arial', 'sans-serif'; /* 系统默认字体 */
-  -webkit-font-smoothing: antialiased; /* 优化 Safari 系统上的字体渲染 */
-  -moz-osx-font-smoothing: grayscale; /* 优化 macOS 系统上的字体渲染 */
-}
-
-body {
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
+    'Helvetica Neue', 'Arial', 'sans-serif';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--md-on-background);
+  background-color: var(--md-background);
   transition:
     color 0.3s,
     background-color 0.3s;
 }
 
+body {
+  color: var(--md-on-background);
+  background-color: var(--md-background);
+  transition:
+    color 0.3s,
+    background-color 0.3s;
+}
+
+// 链接样式
 a {
-  color: var(--primary-color);
+  color: var(--md-primary);
   text-decoration: none;
   transition: color 0.2s;
 
   &:hover {
-    color: var(--primary-hover);
+    color: var(--md-primary-container);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--md-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
+// 按钮样式
 button {
   font-family: inherit;
   cursor: pointer;
   border: none;
   outline: none;
-  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--md-primary);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--md-state-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--md-primary);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    background-color: var(--md-state-pressed);
+  }
 
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.6;
+    color: var(--md-state-disabled);
+    opacity: 1;
   }
 }
 
+// 输入框样式
 input,
 textarea,
 select {
   font-family: inherit;
   font-size: inherit;
+  color: var(--md-on-surface);
+  background-color: var(--md-surface-container-highest);
+  border: 1px solid var(--md-outline);
+  border-radius: 4px;
+  padding: 12px 16px;
   outline: none;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+
+  &:focus {
+    border-color: var(--md-primary);
+    background-color: var(--md-surface-container);
+  }
+
+  &:disabled {
+    color: var(--md-state-disabled);
+    border-color: var(--md-outline-variant);
+    background-color: var(--md-surface-container-low);
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: var(--md-on-surface-variant);
+  }
 }
 
+// 标题样式
 h1,
 h2,
 h3,
@@ -121,5 +285,5 @@ h6 {
   margin: 0;
   font-weight: 600;
   line-height: 1.25;
-  color: var(--text-primary);
+  color: var(--md-on-background);
 }

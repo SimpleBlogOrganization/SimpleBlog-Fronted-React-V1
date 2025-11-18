@@ -11,4 +11,13 @@ export default defineConfig({
       '@': path.resolve(fileURLToPath(new URL('.', import.meta.url)), 'src'),
     },
   },
+  server: {
+    proxy: {
+      '/youke1': {
+        target: 'https://youke1.picui.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/youke1/, ''),
+      },
+    },
+  },
 })
