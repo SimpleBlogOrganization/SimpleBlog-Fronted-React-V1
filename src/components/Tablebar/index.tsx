@@ -105,7 +105,7 @@ const Tablebar: React.FC<TablebarProps> = ({ className = '' }) => {
   return (
     <div id="tablebar" className={`tablebar ${className}`}>
       <Left ref={leftRef} />
-      <Middle ref={middleNavRef} navItems={navItems} user={user} />
+      <Middle ref={middleNavRef} navItems={navItems} user={user ?? undefined} />
       <Right ref={rightRef} user={user} />
     </div>
   )

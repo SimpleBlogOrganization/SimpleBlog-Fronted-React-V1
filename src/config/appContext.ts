@@ -1,4 +1,4 @@
-import type { StateConfig } from '@/types/AppContext'
+import type { StateConfig } from '@/contexts/AppContext'
 
 /**
  * 全局状态持久化配置
@@ -9,8 +9,8 @@ export const DEFAULT_CONFIG: Record<string, StateConfig> = {
     persist: true,
     storageKey: 'app_user',
     transform: {
-      save: (value) => JSON.stringify(value),
-      load: (value) => JSON.parse(value),
+      save: (value: unknown) => JSON.stringify(value),
+      load: (value: string) => JSON.parse(value),
     },
   },
   mode: {

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
 import ThemeToggle from '@/components/ThemeToggle'
