@@ -14,7 +14,9 @@
     "commit": "cz"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "axios": "^1.13.2",
+    "gsap": "^3.13.0",
     "motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -29,6 +31,7 @@
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "@types/three": "^0.181.0",
     "@vitejs/plugin-react": "^5.1.0",
     "commitizen": "^4.3.1",
     "cz-git": "^1.12.0",

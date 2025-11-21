@@ -1,4 +1,4 @@
-import type { EnhancedRoute } from '@/types/router'
+import type { EnhancedRoute } from '@/router/router'
 import Layout from './Layout'
 import NotFound from '@/page/404'
 

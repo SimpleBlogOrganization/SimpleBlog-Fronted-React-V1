@@ -1,16 +1,12 @@
 // ==================== 装饰层 ====================
-.index-page__decoration {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
+.index-page {
+  height: 100vh;
 }
 
 .fluid-reveal-container {
   position: absolute;
   bottom: 0;
-  right: 3vw;
-  width: calc(100vh * 1312 / 1800);
+  left: 55vw;
   height: 100%;
   aspect-ratio: 1312 / 1800;
   pointer-events: auto;
@@ -18,53 +14,136 @@
 
 .round-one {
   position: absolute;
-  top: 152px;
-  right: -24px;
-  width: 400px;
-  height: 400px;
+  top: 10%;
+  right: 0%;
+  width: 70%;
+  aspect-ratio: 1;
   border-radius: 50%;
   pointer-events: none;
+  background-color: var(--md-tertiary-container);
+  z-index: -1;
 }
 
 .round-two {
   position: absolute;
-  top: 255px;
-  right: 180px;
-  width: 576px;
-  height: 576px;
+  top: 30%;
+  right: 40%;
+  width: 80%;
+  aspect-ratio: 1;
   opacity: 0.8;
   border-radius: 50%;
   pointer-events: none;
+  background-color: var(--md-surface-bright);
+  z-index: -1;
 }
 
-// ==================== 内容层 ====================
-.index-page__content {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-}
-
-.index-page__theme-switcher {
+.index-page__decoration-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50vw;
+  height: 100vh;
   display: flex;
-  gap: 0.5rem;
-}
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 8vw;
+  z-index: 1;
+  user-select: none;
 
-.index-page__button {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--md-outline);
-  border-radius: 8px;
-  background: var(--md-surface);
-  color: var(--md-on-surface);
-  cursor: pointer;
-  transition: all 0.2s;
+  .main-title {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2rem;
+    line-height: 1.5;
 
-  &:hover {
-    background: var(--md-surface-container-high);
+    &__solid {
+      font-size: 10rem;
+      font-weight: 700;
+      color: var(--md-on-background);
+      letter-spacing: -0.02em;
+      opacity: 0;
+      text-shadow:
+        1px 1px 1px var(--md-text-shadow-color),
+        1.2px 1.7px 1px var(--md-text-shadow-color),
+        1.4px 2.4px 1px var(--md-text-shadow-color),
+        1.6px 3.1px 1px var(--md-text-shadow-color),
+        1.8px 3.8px 1px var(--md-text-shadow-color),
+        2px 4.5px 1px var(--md-text-shadow-color),
+        2.2px 5.2px 1px var(--md-text-shadow-color),
+        2.4px 5.9px 1px var(--md-text-shadow-color),
+        2.6px 6.6px 1px var(--md-text-shadow-color),
+        2.8px 7.3px 1px var(--md-text-shadow-color);
+    }
+
+    &__outline {
+      font-size: 9rem;
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--md-on-background);
+      letter-spacing: -0.02em;
+      opacity: 0;
+    }
   }
 
-  &:active {
-    transform: scale(0.98);
+  .subtitle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__line {
+      font-size: 4.3rem;
+      font-weight: 400;
+      color: var(--md-on-background);
+      line-height: 1.6;
+      text-align: left;
+      opacity: 0;
+    }
+
+    &__pointer {
+      width: fit-content;
+      margin-top: 3rem;
+      font-size: 5rem;
+      opacity: 0;
+
+      .pointer {
+        animation: pointDown 2.5s infinite;
+        color: var(--md-on-background);
+      }
+    }
+  }
+}
+
+@keyframes pointerFadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 0.8;
+    visibility: visible;
+  }
+}
+
+@keyframes pointDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  10% {
+    transform: translateY(20px);
+  }
+
+  20% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(20px);
+  }
+
+  40% {
+    transform: translateY(0);
   }
 }

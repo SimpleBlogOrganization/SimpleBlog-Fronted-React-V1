@@ -1,7 +1,7 @@
 // ==================== 全局样式 ====================
 
 * {
-  box-sizing: border-box;
+  // box-sizing: border-box;
   scrollbar-width: thin;
   margin: 0;
   padding: 0;
@@ -17,145 +17,111 @@
 html[data-mode='light'],
 html:not([data-mode]) {
   // ========== Primary 主色系统 ==========
-  --md-primary: #6750a4; // Material Design 3 标准主色
-  --md-primary-container: #eaddff;
+  --md-primary: #6750a4;
   --md-on-primary: #ffffff;
-  --md-on-primary-container: #21005d;
-
-  // ========== Secondary 次色系统 ==========
-  --md-secondary: #625b71;
-  --md-secondary-container: #e8def8;
-  --md-on-secondary: #ffffff;
-  --md-on-secondary-container: #1d192b;
 
   // ========== Tertiary 第三色系统 ==========
-  --md-tertiary: #7d5260;
-  --md-tertiary-container: #ffd8e4;
-  --md-on-tertiary: #ffffff;
-  --md-on-tertiary-container: #31111d;
+  --md-tertiary: #e37e0f;
+  --md-tertiary-container: rgba(227, 126, 15, 0.16);
 
-  // ========== Error 错误色系统 ==========
-  --md-error: #ba1a1a;
-  --md-error-container: #ffdad6;
-  --md-on-error: #ffffff;
-  --md-on-error-container: #410002;
-
-  // ========== Neutral 中性色系统 ==========
-  --md-surface: #f4f2ec;
-  --md-surface-dim: #d4d2cc;
-  --md-surface-bright: #f9f7f1;
-  --md-surface-container-lowest: #faf8f2;
-  --md-surface-container-low: #efede7;
-  --md-surface-container: #eae8e2;
-  --md-surface-container-high: #e5e3dd;
-  --md-surface-container-highest: #e0ded8;
+  // ========== Surface 表面系统 ==========
+  --md-surface-bright: #f9f8f3;
+  --md-surface-variant: #e8def8;
   --md-on-surface: #1c1b1f;
   --md-on-surface-variant: #49454f;
-  --md-outline: #79747e;
-  --md-outline-variant: #c8c6c0;
 
   // ========== Background 背景系统 ==========
   --md-background: #f4f2ec;
   --md-on-background: #1c1b1f;
 
-  // ========== Inverse 反转色系统 ==========
-  --md-inverse-surface: #313033;
-  --md-inverse-on-surface: #f4eff4;
-  --md-inverse-primary: #d0bcff;
-
   // ========== State Layers 状态层级 ==========
   --md-state-hover: rgba(28, 27, 31, 0.08);
-  --md-state-focus: rgba(28, 27, 31, 0.12);
   --md-state-pressed: rgba(28, 27, 31, 0.16);
-  --md-state-dragged: rgba(28, 27, 31, 0.16);
-  --md-state-disabled: rgba(28, 27, 31, 0.38);
+
+  // ========== Text Shadow 文字阴影 ==========
+  --md-text-shadow-color: rgba(121, 116, 126, 0.4);
 }
 
 // 深色模式 - Dark Color Scheme
 html[data-mode='dark'] {
   // ========== Primary 主色系统 ==========
   --md-primary: #d0bcff;
-  --md-primary-container: #4f378b;
   --md-on-primary: #381e72;
-  --md-on-primary-container: #eaddff;
-
-  // ========== Secondary 次色系统 ==========
-  --md-secondary: #ccc2dc;
-  --md-secondary-container: #4a4458;
-  --md-on-secondary: #332d41;
-  --md-on-secondary-container: #e8def8;
 
   // ========== Tertiary 第三色系统 ==========
-  --md-tertiary: #efb8c8;
-  --md-tertiary-container: #633b48;
-  --md-on-tertiary: #492532;
-  --md-on-tertiary-container: #ffd8e4;
+  --md-tertiary: #ff9d3a;
+  --md-tertiary-container: rgba(255, 157, 58, 0.2);
 
-  // ========== Error 错误色系统 ==========
-  --md-error: #ffb4ab;
-  --md-error-container: #93000a;
-  --md-on-error: #690005;
-  --md-on-error-container: #ffdad6;
-
-  // ========== Neutral 中性色系统 ==========
-  --md-surface: #11161a;
-  --md-surface-dim: #0d1114;
+  // ========== Surface 表面系统 ==========
   --md-surface-bright: #1a1f24;
-  --md-surface-container-lowest: #0a0d10;
-  --md-surface-container-low: #151a1e;
-  --md-surface-container: #1a1f24;
-  --md-surface-container-high: #1f2529;
-  --md-surface-container-highest: #242a2e;
+  --md-surface-variant: #4a4458;
   --md-on-surface: #e6e8ea;
   --md-on-surface-variant: #c4c8cc;
-  --md-outline: #8e9398;
-  --md-outline-variant: #3d4246;
 
   // ========== Background 背景系统 ==========
   --md-background: #11161a;
   --md-on-background: #e6e8ea;
 
-  // ========== Inverse 反转色系统 ==========
-  --md-inverse-surface: #e6e8ea;
-  --md-inverse-on-surface: #2a2e32;
-  --md-inverse-primary: #6750a4;
-
   // ========== State Layers 状态层级 ==========
   --md-state-hover: rgba(230, 232, 234, 0.08);
-  --md-state-focus: rgba(230, 232, 234, 0.12);
   --md-state-pressed: rgba(230, 232, 234, 0.16);
-  --md-state-dragged: rgba(230, 232, 234, 0.16);
-  --md-state-disabled: rgba(230, 232, 234, 0.38);
+
+  // ========== Text Shadow 文字阴影 ==========
+  --md-text-shadow-color: rgba(142, 147, 152, 0.4);
 }
 
-// ========== Material Design 3 Elevation 高程系统 ==========
-// 高程系统用于创建阴影效果，是颜色系统的一部分
+// ========== 阴影系统 ==========
+// 浅色主题使用深色阴影，暗色主题使用浅色阴影
 
-:root {
-  --md-elevation-0: none;
-  --md-elevation-1:
-    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-  --md-elevation-2:
-    0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  --md-elevation-3:
-    0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  --md-elevation-4:
-    0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-  --md-elevation-5:
-    0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+:root,
+html[data-mode='light'],
+html:not([data-mode]) {
+  // 卡片阴影 - 用于文章卡片、内容卡片（深色阴影）
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover:
+    0 4px 16px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  // 按钮阴影 - 用于交互按钮（深色阴影）
+  --shadow-button: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-button-hover: 0 2px 6px rgba(0, 0, 0, 0.18);
+  --shadow-button-active: 0 1px 2px rgba(0, 0, 0, 0.12);
+
+  // 悬浮阴影 - 用于悬浮元素（深色阴影）
+  --shadow-float: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-float-hover: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+  // 模态框阴影 - 用于弹窗、对话框（深色阴影）
+  --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.24), 0 2px 8px rgba(0, 0, 0, 0.12);
+
+  // 内阴影 - 用于凹陷效果（深色阴影）
+  --shadow-inset:
+    inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 -1px 1px rgba(0, 0, 0, 0.08);
 }
 
 html[data-mode='dark'] {
-  --md-elevation-1:
-    0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
-  --md-elevation-2:
-    0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
-  --md-elevation-3:
-    0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
-  --md-elevation-4:
-    0px 6px 5px 0px rgba(0, 0, 0, 0.3), 0px 11px 15px 7px rgba(0, 0, 0, 0.15);
-  --md-elevation-5:
-    0px 8px 5px 0px rgba(0, 0, 0, 0.3), 0px 15px 22px 8px rgba(0, 0, 0, 0.15);
+  // 卡片阴影（浅色阴影）
+  --shadow-card:
+    0 2px 8px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.06);
+  --shadow-card-hover:
+    0 4px 16px rgba(255, 255, 255, 0.16), 0 2px 4px rgba(255, 255, 255, 0.08);
+
+  // 按钮阴影（浅色阴影）
+  --shadow-button: 0 1px 3px rgba(255, 255, 255, 0.12);
+  --shadow-button-hover: 0 2px 6px rgba(255, 255, 255, 0.18);
+  --shadow-button-active: 0 1px 2px rgba(255, 255, 255, 0.12);
+
+  // 悬浮阴影（浅色阴影）
+  --shadow-float: 0 4px 12px rgba(255, 255, 255, 0.12);
+  --shadow-float-hover: 0 8px 24px rgba(255, 255, 255, 0.18);
+
+  // 模态框阴影（浅色阴影）
+  --shadow-modal:
+    0 8px 32px rgba(255, 255, 255, 0.24), 0 2px 8px rgba(255, 255, 255, 0.12);
+
+  // 内阴影（浅色阴影）
+  --shadow-inset:
+    inset 0 1px 3px rgba(255, 255, 255, 0.15),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08);
 }
 
 // ==================== 全局基础样式 ====================
@@ -171,6 +137,10 @@ html:not([data-mode]) {
 }
 
 html {
+  scrollbar-width: none;
+}
+
+html {
   font-family:
     'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
     'Helvetica Neue', 'Arial', 'sans-serif';
@@ -183,107 +153,24 @@ html {
     background-color 0.3s;
 }
 
+// ==================== View Transition API 样式 ====================
+// 用于主题切换时的圆形扩散动画效果
+
+// 关闭默认动画，否则影响自定义动画的执行
+::view-transition-new(root),
+::view-transition-old(root) {
+  animation: none;
+}
+
+// 切换到暗色模式时，确保旧视图（亮色）在上层，以便实现圆形扩散效果
+html[data-mode='dark']::view-transition-old(root) {
+  z-index: 100;
+}
+
 body {
   color: var(--md-on-background);
   background-color: var(--md-background);
   transition:
     color 0.3s,
     background-color 0.3s;
-}
-
-// 链接样式
-a {
-  color: var(--md-primary);
-  text-decoration: none;
-  transition: color 0.2s;
-
-  &:hover {
-    color: var(--md-primary-container);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--md-primary);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-}
-
-// 按钮样式
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background-color: transparent;
-  color: var(--md-primary);
-  transition:
-    background-color 0.2s,
-    color 0.2s;
-
-  &:hover:not(:disabled) {
-    background-color: var(--md-state-hover);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--md-primary);
-    outline-offset: 2px;
-  }
-
-  &:active:not(:disabled) {
-    background-color: var(--md-state-pressed);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    color: var(--md-state-disabled);
-    opacity: 1;
-  }
-}
-
-// 输入框样式
-input,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--md-on-surface);
-  background-color: var(--md-surface-container-highest);
-  border: 1px solid var(--md-outline);
-  border-radius: 4px;
-  padding: 12px 16px;
-  outline: none;
-  transition:
-    border-color 0.2s,
-    background-color 0.2s;
-
-  &:focus {
-    border-color: var(--md-primary);
-    background-color: var(--md-surface-container);
-  }
-
-  &:disabled {
-    color: var(--md-state-disabled);
-    border-color: var(--md-outline-variant);
-    background-color: var(--md-surface-container-low);
-    cursor: not-allowed;
-  }
-
-  &::placeholder {
-    color: var(--md-on-surface-variant);
-  }
-}
-
-// 标题样式
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--md-on-background);
 }

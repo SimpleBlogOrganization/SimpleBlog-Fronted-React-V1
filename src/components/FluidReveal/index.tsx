@@ -49,7 +49,7 @@ const FluidReveal = forwardRef<FluidRevealRef, FluidRevealProps>(
 
     // 常量
     const CLEAR_THRESHOLD = 0.85
-    const EXPLODE_DURATION = 2000
+    const EXPLODE_DURATION = 1000
     const CHECK_INTERVAL = 200
     const MOVE_TIMEOUT = 50
     const MAX_TEXTURE_SIZE = 4096
@@ -166,6 +166,8 @@ const FluidReveal = forwardRef<FluidRevealRef, FluidRevealProps>(
       rendererRef.current = renderer
 
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      // 设置清除颜色为透明，避免频繁刷新时闪白底
+      renderer.setClearColor(0x000000, 0)
 
       const scene = new THREE.Scene()
       const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
@@ -421,6 +423,8 @@ const FluidReveal = forwardRef<FluidRevealRef, FluidRevealProps>(
         displayMaterial.uniforms.uFluid.value = currentRenderTarget.texture
 
         renderer.setRenderTarget(null)
+        // 清除主 canvas 背景为透明，避免频繁刷新时闪白底
+        renderer.clear()
         renderer.render(scene, camera)
       }
 
@@ -508,14 +512,27 @@ const FluidReveal = forwardRef<FluidRevealRef, FluidRevealProps>(
           const canvas = document.createElement('canvas')
           canvas.width = newWidth
           canvas.height = newHeight
-          const ctx = canvas.getContext('2d')
+          const ctx = canvas.getContext('2d', {
+            alpha: true,
+            willReadFrequently: false,
+          })
           if (!ctx) return
+
+          // 使用标准平滑，避免过度平滑产生描边
+          ctx.imageSmoothingEnabled = true
+          ctx.imageSmoothingQuality = 'medium'
           ctx.drawImage(img, 0, 0, newWidth, newHeight)
 
           const newTexture = new THREE.CanvasTexture(canvas)
-          newTexture.minFilter = THREE.LinearFilter
+          // 使用 mipmap 过滤，改善缩放时的边缘质量
+          newTexture.minFilter = THREE.LinearMipmapLinearFilter
           newTexture.magFilter = THREE.LinearFilter
           newTexture.premultiplyAlpha = false
+          newTexture.generateMipmaps = true
+          // 设置纹理包装模式为 clamp，避免边缘重复产生描边
+          newTexture.wrapS = THREE.ClampToEdgeWrapping
+          newTexture.wrapT = THREE.ClampToEdgeWrapping
+          newTexture.anisotropy = 16
 
           // Dispose old texture before replacing (but not placeholder textures)
           const oldTexture =
