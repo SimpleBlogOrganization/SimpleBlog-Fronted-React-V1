@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 const Left = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
