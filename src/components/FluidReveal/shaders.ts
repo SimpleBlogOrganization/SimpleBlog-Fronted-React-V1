@@ -98,12 +98,18 @@ void main() {
 
     vec2 topUV = getCoverUV(vUv, uTopTextureSize);
     vec2 bottomUV = getCoverUV(vUv, uBottomTextureSize);
+    
+    // 限制 UV 坐标在有效范围内，避免采样到边缘外产生描边
+    topUV = clamp(topUV, 0.0, 1.0);
+    bottomUV = clamp(bottomUV, 0.0, 1.0);
 
+    // 使用高质量纹理采样，改善透明边缘
     vec4 topColor = texture2D(uTopTexture, topUV);
     vec4 bottomColor = texture2D(uBottomTexture, bottomUV);
     
     float threshold = 0.02;
-    float edgeWidth = 0.004 / uDpr;
+    // 增加边缘宽度，根据 DPR 自适应，改善透明边缘的平滑度
+    float edgeWidth = max(0.008 / uDpr, 0.002);
 
     float t = smoothstep(threshold, threshold + edgeWidth, fluid);
     

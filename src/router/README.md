@@ -6,13 +6,15 @@
 
 ```
 router/
-├── config.ts      # 配置常量（需要登录的路由配置）
 ├── routes.tsx     # 路由配置（纯配置，路由定义）
 ├── guard.ts       # 权限守卫（认证、权限控制）
 ├── enhancer.ts    # 路由增强器（注入 loader、Loading 动画）
 ├── index.tsx      # 组装功能，导出路由实例
-└── Layout.tsx     # 布局组件
+├── Layout.tsx     # 布局组件
+└── Layout.scss    # 布局样式
 ```
+
+**注意**：路由守卫配置位于 `config/router.ts`，不在 router 目录下。
 
 ## 架构设计
 
@@ -101,18 +103,18 @@ enhancer.ts: 拦截路由加载
     ↓
 1. 检测路径变化
     ↓
-2. 显示 Loading 动画 (entering → active)
-    ↓
-3. 调用 guard.ts: 执行权限检查
+2. 执行守卫检查（guard.beforeEach）
     ├── 未登录 → 重定向到 /login
     └── 通过 → 继续
     ↓
-4. 如果重定向 → 立即隐藏 Loading
-5. 如果通过 → 执行 route.loader
+3. 如果重定向 → 直接返回，不显示 Loading
+4. 如果通过 → 显示 Loading 动画
+    ↓
+5. 执行 route.loader
     ↓
 6. 检查页面加载状态
     ↓
-7. 页面加载完成 → 隐藏 Loading (exiting → idle)
+7. 页面加载完成 → 隐藏 Loading
 ```
 
 ## 关键文件说明

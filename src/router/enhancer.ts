@@ -3,7 +3,7 @@ import type {
   GuardContext,
   RouteMeta,
   RouterGuard,
-} from '@/types/router'
+} from '@/router/router'
 import {
   createBrowserRouter,
   redirect,

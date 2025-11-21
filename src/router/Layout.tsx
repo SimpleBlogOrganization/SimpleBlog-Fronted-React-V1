@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import React from 'react'
+import Tablebar from '@/components/Tablebar'
+import './Layout.scss'
 
 /**
  * 布局组件
@@ -7,9 +9,14 @@ import React from 'react'
  */
 const Layout = () => {
   return (
-    <React.Suspense fallback={null}>
-      <Outlet />
-    </React.Suspense>
+    <>
+      <Tablebar />
+      <div className="layout-content">
+        <React.Suspense fallback={null}>
+          <Outlet />
+        </React.Suspense>
+      </div>
+    </>
   )
 }
 

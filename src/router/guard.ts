@@ -1,4 +1,4 @@
-import type { RouterGuard } from '@/types/router'
+import type { RouterGuard } from '@/router/router'
 import { redirect } from 'react-router-dom'
 import { AUTH_ROUTES } from '@/config/router'
 import { getUser } from '@/contexts/AppContext'

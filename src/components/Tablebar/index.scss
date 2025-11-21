@@ -1,0 +1,229 @@
+.tablebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color: transparent;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    &-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      background: linear-gradient(
+        135deg,
+        var(--md-primary),
+        var(--md-tertiary)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+
+  &__middle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: center;
+    position: relative; /* Necessary for absolute positioning of slides */
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__theme-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--md-on-surface);
+    font-size: 1.25rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--md-state-hover);
+    }
+  }
+
+  &__user-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--md-state-hover);
+    }
+  }
+
+  &__user-avatar {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--md-primary), var(--md-tertiary));
+    color: var(--md-on-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__login-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    background-color: var(--md-primary);
+    color: var(--md-on-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+/* New Sliding Effect Styles */
+.nav-slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 9999px;
+  transition:
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1.05),
+    width 0.6s cubic-bezier(0.23, 1, 0.32, 1.05),
+    opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1.05);
+  pointer-events: none;
+}
+
+.nav-slide-active {
+  background-color: var(--md-primary);
+}
+
+.nav-slide-hover {
+  background-color: color-mix(
+    in srgb,
+    var(--md-surface-variant) 70%,
+    transparent
+  );
+
+  z-index: -1;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    0 0 24px color-mix(in srgb, var(--md-primary) 6%, transparent),
+    0 -1px 4px rgba(255, 255, 255, 0.4) inset,
+    0 1px 2px rgba(0, 0, 0, 0.08) inset,
+    0 0 24px color-mix(in srgb, var(--md-primary) 10%, transparent) inset;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem; /* Increased padding for pill shape */
+  border-radius: 1.5rem;
+  background-color: transparent;
+  color: var(--md-on-surface-variant);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s; /* Only animate color */
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  /* Removed old indicator */
+  &__indicator {
+    display: none;
+  }
+
+  &:hover:not(&--active) {
+    /* Removed background-color change */
+    color: var(--md-on-surface);
+  }
+
+  &--active {
+    color: var(--md-on-primary);
+  }
+}
+
+@media (max-width: 768px) {
+  .tablebar {
+    padding: 0 1rem;
+    height: 3.5rem;
+
+    &__logo-text {
+      font-size: 1.125rem;
+    }
+
+    &__middle {
+      gap: 0.25rem;
+    }
+  }
+
+  .nav-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+
+    &__label {
+      display: none;
+    }
+  }
+
+  .tablebar__login-btn {
+    padding: 0.5rem 0.75rem;
+
+    span {
+      display: none;
+    }
+  }
+}

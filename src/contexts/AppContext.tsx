@@ -13,7 +13,7 @@ import type {
   StateConfig,
   Mode,
   User,
-} from '../types/AppContext'
+} from './AppContext.d'
 import { DEFAULT_CONFIG } from '@/config/appContext'
 
 /**
@@ -88,7 +88,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const removeState = useCallback((key: string) => {
     setStateObj((prev) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [key]: _unused, ...rest } = prev
       return rest
     })
