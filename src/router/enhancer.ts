@@ -69,7 +69,7 @@ export const createEnhancedRouter = (
           // 先执行守卫检查，如果会重定向则不显示 Loading
           if (guard?.beforeEach) {
             const result = await guard.beforeEach(context)
-
+            // 如果守卫返回了 Response，则直接返回
             if (result instanceof Response) {
               return result
             }

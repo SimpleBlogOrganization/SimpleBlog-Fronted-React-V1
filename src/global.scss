@@ -34,6 +34,9 @@ html:not([data-mode]) {
   --md-background: #f4f2ec;
   --md-on-background: #1c1b1f;
 
+  // ========== Loading 加载动画背景 ==========
+  --md-loading-bg: #dfdfdf;
+
   // ========== State Layers 状态层级 ==========
   --md-state-hover: rgba(28, 27, 31, 0.08);
   --md-state-pressed: rgba(28, 27, 31, 0.16);
@@ -61,6 +64,9 @@ html[data-mode='dark'] {
   // ========== Background 背景系统 ==========
   --md-background: #11161a;
   --md-on-background: #e6e8ea;
+
+  // ========== Loading 加载动画背景 ==========
+  --md-loading-bg: #222;
 
   // ========== State Layers 状态层级 ==========
   --md-state-hover: rgba(230, 232, 234, 0.08);
